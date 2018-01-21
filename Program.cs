@@ -44,18 +44,24 @@ namespace HeaderAndFooter
                         //open the stream 
                         pdfDoc.Open();
 
-                        for (int i = 0; i < 5; i++)
+                        int contarLinhas = 0;
+
+
+                        for (int j = 0; j < 36; j++)
                         {
-                            Paragraph para = new Paragraph("Hello world. Checking Header Footer");
-
+                            Paragraph para = new Paragraph("Hello world. Checking Header Footer" + j);
                             para.Alignment = Element.ALIGN_CENTER;
-
                             pdfDoc.Add(para);
-
-                            pdfDoc.NewPage();
+                            contarLinhas++;
+                            if (contarLinhas == 36 / 2)
+                            {
+                                pdfDoc.NewPage();
+                            }
                         }
 
+
                         pdfDoc.Close();
+
                         System.Diagnostics.Process.Start("output.pdf");
 
                     }
@@ -69,15 +75,12 @@ namespace HeaderAndFooter
 
 
                     }
-
                 }
 
             }
-
-            
-                
-            }
-
         }
+    }
 
 }
+
+ 

@@ -76,110 +76,71 @@ namespace HeaderAndFooter
             Phrase p1Header = new Phrase(Titulo, baseFontNormal);
 
             //Create PdfTable object
-            PdfPTable pdfTab = new PdfPTable(3);
+            //PdfPTable pdfTab = new PdfPTable(3);
 
             //We will have to create separate cells to include image logo and 2 separate strings
             //Row 1
             PdfPCell pdfCell1 = new PdfPCell(createImageCell(logoCaminho));
-            PdfPCell pdfCell2 = new PdfPCell(p1Header);
-            PdfPCell pdfCell3 = new PdfPCell();
+            //PdfPCell pdfCell2 = new PdfPCell(p1Header);
+           // PdfPCell pdfCell3 = new PdfPCell();
             String text = "Page " + writer.PageNumber + " of ";
 
 
-            //Add paging to header
-            {
-                cb.BeginText();
-                cb.SetFontAndSize(bf, 12);
-                cb.SetTextMatrix(document.PageSize.GetRight(200), document.PageSize.GetTop(45));
-                cb.ShowText(text);
-                cb.EndText();
-                float len = bf.GetWidthPoint(text, 12);
-                //Adds "12" in Page 1 of 12
-                cb.AddTemplate(headerTemplate, document.PageSize.GetRight(200) + len, document.PageSize.GetTop(45));
-            }
+            
             //Add paging to footer
             {
                 cb.BeginText();
                 cb.SetFontAndSize(bf, 12);
-                cb.SetTextMatrix(document.PageSize.GetRight(180), document.PageSize.GetBottom(30));
+                cb.SetTextMatrix(document.PageSize.GetRight(180), document.PageSize.GetBottom(20));
                 cb.ShowText(text);
                 cb.EndText();
                 float len = bf.GetWidthPoint(text, 12);
-                cb.AddTemplate(footerTemplate, document.PageSize.GetRight(180) + len, document.PageSize.GetBottom(30));
+                cb.AddTemplate(footerTemplate, document.PageSize.GetRight(180) + len, document.PageSize.GetBottom(20));
             }
-            //Row 2
-            PdfPCell pdfCell4 = new PdfPCell(new Phrase("Sub Header Description", baseFontNormal));
-            //Row 3
-
-
-            PdfPCell pdfCell5 = new PdfPCell(new Phrase("Date:" + PrintTime.ToShortDateString(), baseFontBig));
-            PdfPCell pdfCell6 = new PdfPCell();
-            PdfPCell pdfCell7 = new PdfPCell(new Phrase("TIME:" + string.Format("{0:t}", DateTime.Now), baseFontBig));
-
 
             //set the alignment of all three cells and set border to 0
             pdfCell1.HorizontalAlignment = Element.ALIGN_LEFT;
-            pdfCell2.HorizontalAlignment = Element.ALIGN_LEFT;
-            pdfCell3.HorizontalAlignment = Element.ALIGN_CENTER;
-            pdfCell4.HorizontalAlignment = Element.ALIGN_CENTER;
-            pdfCell5.HorizontalAlignment = Element.ALIGN_CENTER;
-            pdfCell6.HorizontalAlignment = Element.ALIGN_CENTER;
-            pdfCell7.HorizontalAlignment = Element.ALIGN_CENTER;
-
-
-            pdfCell2.VerticalAlignment = Element.ALIGN_BOTTOM;
-            pdfCell3.VerticalAlignment = Element.ALIGN_MIDDLE;
-            pdfCell4.VerticalAlignment = Element.ALIGN_TOP;
-            pdfCell5.VerticalAlignment = Element.ALIGN_MIDDLE;
-            pdfCell6.VerticalAlignment = Element.ALIGN_MIDDLE;
-            pdfCell7.VerticalAlignment = Element.ALIGN_MIDDLE;
-
-
-            pdfCell4.Colspan = 3;
-
 
 
             pdfCell1.Border = 0;
-            pdfCell2.Border = 0;
-            pdfCell3.Border = 0;
-            pdfCell4.Border = 0;
-            pdfCell5.Border = 0;
-            pdfCell6.Border = 0;
-            pdfCell7.Border = 0;
+
+            PdfPTable table = new PdfPTable(8);
+             //le.WidthPercentage = 100;
+             table.AddCell(pdfCell1);
+             table.AddCell(createCell("Board", 1, 2, PdfPCell.BOX));
+             table.AddCell(createCell("Month and Year of Passing", 1, 2, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.ALIGN_TOP));
+             table.AddCell(createCell("Marks", 2, 1, PdfPCell.ALIGN_TOP));
+             table.AddCell(createCell("Percentage", 1, 2, PdfPCell.BOX));
+             table.AddCell(createCell("Class / Grade", 1, 2, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("Obtained", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("Out of", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("12th / I.B. Diploma", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("Aggregate (all subjects)", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+            
+
+             //add all three cells into PdfTable
+             pdfCell1.Colspan = 1;
+             pdfCell1.FixedHeight = 50;
+            // table.AddCell(pdfCell1);
+            // pdfTab.AddCell(pdfCell2);            
+            // pdfTab.AddCell(pdfCell3);
 
 
-            //add all three cells into PdfTable
-            pdfCell1.Colspan = 1;
-            pdfCell1.FixedHeight = 50;
-            pdfTab.AddCell(pdfCell1);
-            pdfTab.AddCell(pdfCell2);            
-            pdfTab.AddCell(pdfCell3);
-
-            /*
-            pdfTab.AddCell(pdfCell5);
-            pdfTab.AddCell(pdfCell6);
-            pdfTab.AddCell(pdfCell7);
-
-            */
-            pdfTab.TotalWidth = document.PageSize.Width - 80f;
-            pdfTab.WidthPercentage = 70;
+             table.TotalWidth = document.PageSize.Width - 80f;
+             table.WidthPercentage = 70;    
 
 
+             table.WriteSelectedRows(0, -1, 40, document.PageSize.Height - 30, writer.DirectContent);
 
-            //call WriteSelectedRows of PdfTable. This writes rows from PdfWriter in PdfTable
-            //first param is start row. -1 indicates there is no end row and all the rows to be included to write
-            //Third and fourth param is x and y position to start writing
-            pdfTab.WriteSelectedRows(0, -1, 40, document.PageSize.Height - 30, writer.DirectContent);
 
-            //Move the pointer and draw line to separate header section from rest of page
-            cb.MoveTo(40, document.PageSize.Height - 100);
-            cb.LineTo(document.PageSize.Width - 40, document.PageSize.Height - 100);
-            cb.Stroke();
-
-            //Move the pointer and draw line to separate footer section from rest of page
-            cb.MoveTo(40, document.PageSize.GetBottom(50));
-            cb.LineTo(document.PageSize.Width - 40, document.PageSize.GetBottom(50));
-            cb.Stroke();
         }
 
         public override void OnCloseDocument(PdfWriter writer, Document document)
@@ -189,13 +150,13 @@ namespace HeaderAndFooter
             headerTemplate.BeginText();
             headerTemplate.SetFontAndSize(bf, 12);
             headerTemplate.SetTextMatrix(0, 0);
-            headerTemplate.ShowText((writer.PageNumber - 1).ToString());
+            headerTemplate.ShowText((writer.PageNumber).ToString());
             headerTemplate.EndText();
 
             footerTemplate.BeginText();
             footerTemplate.SetFontAndSize(bf, 12);
             footerTemplate.SetTextMatrix(0, 0);
-            footerTemplate.ShowText((writer.PageNumber - 1).ToString());
+            footerTemplate.ShowText((writer.PageNumber).ToString());
             footerTemplate.EndText();
 
 
@@ -209,6 +170,21 @@ namespace HeaderAndFooter
 
             return cell;
        }
+
+
+        public PdfPCell createCell(String content, int colspan, int rowspan, int border)
+        {
+            iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
+
+            iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+
+            PdfPCell cell = new PdfPCell(new Phrase(content, baseFontNormal));
+            cell.Colspan = colspan;
+            cell.Rowspan = rowspan;
+            cell.Border = border;
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            return cell;
+        }
     }
 }
 
