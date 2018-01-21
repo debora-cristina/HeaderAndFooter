@@ -1,0 +1,22 @@
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\bin\Debug\HeaderAndFooter.exe
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\bin\Debug\HeaderAndFooter.pdb
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\bin\Debug\Spire.Pdf.dll
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\bin\Debug\Spire.License.dll
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\bin\Debug\Microsoft.mshtml.dll
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\bin\Debug\Spire.Pdf.xml
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\bin\Debug\Spire.License.xml
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\obj\Debug\HeaderAndFooter.exe
+d:\documents\visual studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\obj\Debug\HeaderAndFooter.pdb
+D:\Documents\Visual Studio 2015\Projects\HeaderAndFooter\HeaderAndFooter\obj\Debug\HeaderAndFooter.csprojResolveAssemblyReference.cache
+F:\HeaderAndFooter\HeaderAndFooter\obj\Debug\HeaderAndFooter.csprojResolveAssemblyReference.cache
+F:\HeaderAndFooter\HeaderAndFooter\obj\Debug\HeaderAndFooter.csproj.CoreCompileInputs.cache
+F:\HeaderAndFooter\HeaderAndFooter\obj\Debug\HeaderAndFooter.exe
+F:\HeaderAndFooter\HeaderAndFooter\obj\Debug\HeaderAndFooter.pdb
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\HeaderAndFooter.exe
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\HeaderAndFooter.pdb
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\itextsharp.dll
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\Spire.License.dll
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\Microsoft.mshtml.dll
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\itextsharp.xml
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\Spire.Pdf.xml
+F:\HeaderAndFooter\HeaderAndFooter\bin\Debug\Spire.License.xml
