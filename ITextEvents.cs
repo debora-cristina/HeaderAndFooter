@@ -162,7 +162,7 @@ namespace HeaderAndFooter
 
         }
 
-        public static PdfPCell createImageCell(String path) {
+        public PdfPCell createImageCell(String path) {
                 Image img = Image.GetInstance(path);
                 PdfPCell cell = new PdfPCell(img, true);
 
