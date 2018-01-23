@@ -49,35 +49,13 @@ namespace HeaderAndFooter
 
                         for (int j = 0; j < 36; j++)
                         {
-                            PdfPTable table = new PdfPTable(8);
-                            //le.WidthPercentage = 100;
-                            PdfPCell pdfCell1 = new PdfPCell(events.createImageCell("C:/Users/Débora/Desktop/logo.jpg"));
-                            table.AddCell(pdfCell1);
-                            table.AddCell(events.createCell("Board", 1, 2, PdfPCell.BOX));
-                            table.AddCell(events.createCell("Month and Year of Passing", 1, 2, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.ALIGN_TOP));
-                            table.AddCell(events.createCell("Marks", 2, 1, PdfPCell.ALIGN_TOP));
-                            table.AddCell(events.createCell("Percentage", 1, 2, PdfPCell.BOX));
-                            table.AddCell(events.createCell("Class / Grade", 1, 2, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("Obtained", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("Out of", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("12th / I.B. Diploma", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("Aggregate (all subjects)", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.BOX));
-                            table.AddCell(events.createCell("", 1, 1, PdfPCell.BOX));
 
-
-                            //add all three cells into PdfTable
-                            pdfCell1.Colspan = 1;
-                            pdfCell1.FixedHeight = 50;
-                            // table.AddCell(pdfCell1);
-                            // pdfTab.AddCell(pdfCell2);            
-                            // pdfTab.AddCell(pdfCell3);
+                            PdfPTable table = new PdfPTable(4);
+                            table.AddCell(events.createFillCell("Table1", 1, 1, PdfPCell.BOX, BaseColor.ORANGE));
+                            table.AddCell(events.createCell("Table2", 1, 1, PdfPCell.BOX));
+                            table.AddCell(events.createCell("Table3", 1, 1, PdfPCell.ALIGN_TOP));
+                            table.AddCell(events.createCell("Marks", 1, 1, PdfPCell.ALIGN_TOP));
+  
 
                             contarLinhas++;
 

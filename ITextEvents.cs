@@ -179,9 +179,25 @@ namespace HeaderAndFooter
             iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
 
             PdfPCell cell = new PdfPCell(new Phrase(content, baseFontNormal));
+            cell.MinimumHeight= 10f;
             cell.Colspan = colspan;
             cell.Rowspan = rowspan;
             cell.Border = border;
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            return cell;
+        }
+
+        public PdfPCell createFillCell(String content, int colspan, int rowspan, int border, BaseColor background)
+        {
+            iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
+
+            iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+
+            PdfPCell cell = new PdfPCell(new Phrase(content, baseFontNormal));
+            cell.Colspan = colspan;
+            cell.Rowspan = rowspan;
+            cell.Border = border;
+            cell.BackgroundColor = background;
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             return cell;
         }
