@@ -1,5 +1,5 @@
-﻿using iTextSharp.text.pdf; 
-using iTextSharp.text; 
+﻿using iTextSharp.text.pdf;
+using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +72,7 @@ namespace HeaderAndFooter
 
             iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
 
-       
+
             Phrase p1Header = new Phrase(Titulo, baseFontNormal);
 
             //Create PdfTable object
@@ -82,13 +82,20 @@ namespace HeaderAndFooter
             //Row 1
             PdfPCell pdfCell1 = new PdfPCell(createImageCell(logoCaminho));
             //PdfPCell pdfCell2 = new PdfPCell(p1Header);
-           // PdfPCell pdfCell3 = new PdfPCell();
+            // PdfPCell pdfCell3 = new PdfPCell();
             String text = "Page " + writer.PageNumber + " of ";
 
 
-            
+
             //Add paging to footer
             {
+                Font ffont = new Font(Font.FontFamily.UNDEFINED, 5, Font.ITALIC);
+
+                Phrase footer = new Phrase("this is a footer", ffont);
+
+                ColumnText.ShowTextAligned(cb, Element.ALIGN_CENTER,
+                   footer, (document.Right - document.Left) / 2 + document.LeftMargin,
+                   document.Bottom + 20, 0);
                 cb.BeginText();
                 cb.SetFontAndSize(bf, 12);
                 cb.SetTextMatrix(document.PageSize.GetRight(180), document.PageSize.GetBottom(20));
@@ -105,40 +112,41 @@ namespace HeaderAndFooter
             pdfCell1.Border = 0;
 
             PdfPTable table = new PdfPTable(8);
-             //le.WidthPercentage = 100;
-             table.AddCell(pdfCell1);
-             table.AddCell(createCell("Board", 1, 2, PdfPCell.BOX));
-             table.AddCell(createCell("Month and Year of Passing", 1, 2, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.ALIGN_TOP));
-             table.AddCell(createCell("Marks", 2, 1, PdfPCell.ALIGN_TOP));
-             table.AddCell(createCell("Percentage", 1, 2, PdfPCell.BOX));
-             table.AddCell(createCell("Class / Grade", 1, 2, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("Obtained", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("Out of", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("12th / I.B. Diploma", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("Aggregate (all subjects)", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
-             table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
-            
+            //le.WidthPercentage = 100;
+            table.AddCell(pdfCell1);
+            table.AddCell(createCell("Board", 1, 2, PdfPCell.BOX));
+            table.AddCell(createCell("Month and Year of Passing", 1, 2, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.ALIGN_TOP));
+            table.AddCell(createCell("Marks", 2, 1, PdfPCell.ALIGN_TOP));
+            table.AddCell(createCell("Percentage", 1, 2, PdfPCell.BOX));
+            table.AddCell(createCell("Class / Grade", 1, 2, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("Obtained", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("Out of", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("12th / I.B. Diploma", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("Aggregate (all subjects)", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
+            table.AddCell(createCell("", 1, 1, PdfPCell.BOX));
 
-             //add all three cells into PdfTable
-             pdfCell1.Colspan = 1;
-             pdfCell1.FixedHeight = 50;
+
+            //add all three cells into PdfTable
+            pdfCell1.Colspan = 1;
+            pdfCell1.FixedHeight = 50;
             // table.AddCell(pdfCell1);
             // pdfTab.AddCell(pdfCell2);            
             // pdfTab.AddCell(pdfCell3);
 
+            
+            table.TotalWidth = PageSize.A4.Width - 40;
+            table.LockedWidth= true;
+            table.WidthPercentage = 100;
 
-             table.TotalWidth = document.PageSize.Width - 80f;
-             table.WidthPercentage = 70;    
-
-
-             table.WriteSelectedRows(0, -1, 40, document.PageSize.Height - 30, writer.DirectContent);
+            // 3 parametro muda width left
+            table.WriteSelectedRows(0, -1, 20, document.PageSize.Height - 30, writer.DirectContent);
 
 
         }
@@ -162,14 +170,15 @@ namespace HeaderAndFooter
 
         }
 
-        public PdfPCell createImageCell(String path) {
-                Image img = Image.GetInstance(path);
-                PdfPCell cell = new PdfPCell(img, true);
+        public PdfPCell createImageCell(String path)
+        {
+            Image img = Image.GetInstance(path);
+            PdfPCell cell = new PdfPCell(img, true);
 
 
 
             return cell;
-       }
+        }
 
 
         public PdfPCell createCell(String content, int colspan, int rowspan, int border)
@@ -179,7 +188,7 @@ namespace HeaderAndFooter
             iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
 
             PdfPCell cell = new PdfPCell(new Phrase(content, baseFontNormal));
-            cell.MinimumHeight= 10f;
+            cell.MinimumHeight = 10f;
             cell.Colspan = colspan;
             cell.Rowspan = rowspan;
             cell.Border = border;
@@ -203,4 +212,3 @@ namespace HeaderAndFooter
         }
     }
 }
-
